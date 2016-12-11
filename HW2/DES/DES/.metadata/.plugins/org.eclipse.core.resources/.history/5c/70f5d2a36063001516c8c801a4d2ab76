@@ -1,0 +1,60 @@
+//
+//  main.c
+
+//
+
+#include <stdio.h>
+#include <stdlib.h>
+#include <time.h>
+#include "SimEng.h"
+#include "PriorityQ.h"
+#include "FifoQ.h"
+#include "app.h"
+
+
+
+//define the structure we are going to use to determine
+//which event is happening and extract data from it.
+struct EventData{
+
+    enum EventKind {
+        arrivalEvent = 0,
+        landingEvent = 1
+    } k;
+
+    int id;
+
+    union{
+        struct{
+            double ts;
+        }arrivalEvent;
+
+        struct{
+            double ts;
+        }landingEvent;
+    }param;
+};
+
+
+
+int main(int argc, const char * argv[]) {
+
+    srand((unsigned) time(NULL));
+
+    //create first event
+    struct EventData *E = malloc(sizeof(struct EventData));
+    E -> k = 0;
+    E -> id = 1;
+    E -> param.arrivalEvent.ts = 1.0;
+    
+    // run Simulation
+    
+    runSim(E);
+    
+    // free memory
+    free(E);
+    return 0;
+}
+
+
+

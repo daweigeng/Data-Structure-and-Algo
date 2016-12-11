@@ -1,0 +1,16 @@
+04:37:11 **** Incremental Build of configuration Release for project HW2 ****
+Info: Internal Builder is used for build
+gcc -O3 -Wall -c -fmessage-length=0 -o SimEng.o "..\\SimEng.c" 
+..\SimEng.c: In function 'runSim':
+..\SimEng.c:65:13: warning: implicit declaration of function 'callback' [-Wimplicit-function-declaration]
+             callback(E);//schedule arrival and landing events
+             ^
+gcc -O3 -Wall -c -fmessage-length=0 -o ".metadata\\.plugins\\org.eclipse.cdt.make.core\\specs.o" "..\\.metadata\\.plugins\\org.eclipse.cdt.make.core\\specs.c" 
+gcc -O3 -Wall -c -fmessage-length=0 -o ".metadata\\.plugins\\org.eclipse.cdt.managedbuilder.core\\spec.o" "..\\.metadata\\.plugins\\org.eclipse.cdt.managedbuilder.core\\spec.c" 
+gcc -O3 -Wall -c -fmessage-length=0 -o main.o "..\\main.c" 
+gcc -O3 -Wall -c -fmessage-length=0 -o FifoQ.o "..\\FifoQ.c" 
+gcc -O3 -Wall -c -fmessage-length=0 -o PriorityQ.o "..\\PriorityQ.c" 
+gcc -o HW2.exe ".metadata\\.plugins\\org.eclipse.cdt.make.core\\specs.o" ".metadata\\.plugins\\org.eclipse.cdt.managedbuilder.core\\spec.o" FifoQ.o PriorityQ.o SimEng.o main.o 
+
+04:37:13 Build Finished (took 1s.615ms)
+

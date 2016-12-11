@@ -1,0 +1,37 @@
+data format:
+1. The first number listed in the first line is the number of lines and the second is the number of columns.
+2. Values are separated by comma.
+3. Each line is a data entry that consists of all the variables in the order listed below.
+In the example dataset, the order is:
+fixed acidity,volatile acidity,citric acid,residual sugar,chlorides,free sulfur dioxide,total sulfur dioxide,density,pH,sulphates,alcohol,quality
+
+To illustrate this format more vividly...
+/* Assumed Data Format:
+ * 
+ *  ...
+ *  number of lines, number of columns
+ *  7.9,0.18,0.37,1.2,0.04,16,75,0.992,3.18,0.63,10.8,0
+ *  6.6,0.16,0.4,1.5,0.044,48,143,0.9912,3.54,0.52,12.4,1
+ *  8.3,0.42,0.62,19.25,0.04,41,172,1.0002,2.98,0.67,9.7,0
+ *   6.6,0.17,0.38,1.5,0.032,28,112,0.9914,3.25,0.55,11.4,1
+ *  ...
+
+Attribute information for the Wine Quality Data Set(example dataset)
+https://archive.ics.uci.edu/ml/datasets/Wine+Quality
+
+
+   Input variables (based on physicochemical tests):
+   1 - fixed acidity
+   2 - volatile acidity
+   3 - citric acid
+   4 - residual sugar
+   5 - chlorides
+   6 - free sulfur dioxide
+   7 - total sulfur dioxide
+   8 - density
+   9 - pH
+   10 - sulphates
+   11 - alcohol
+
+   Output variable (based on sensory data): 
+   12 - quality (binary score 0 or 1) 

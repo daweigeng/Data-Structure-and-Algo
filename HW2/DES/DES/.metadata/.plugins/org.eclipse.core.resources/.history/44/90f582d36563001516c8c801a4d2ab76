@@ -1,0 +1,45 @@
+//
+//  SimEng.h
+
+//
+
+#ifndef SimEng_h
+#define SimEng_h
+
+#include <stdio.h>
+#include <stdlib.h>
+
+void runSim(void *d);
+/*
+ * run simulation
+ * @param d is a pointer pointing to the first event
+ *
+ */
+
+double urand(void);
+double randexp();
+/*
+ * call function to generate interarrival time
+ *
+ *
+ */
+void callback(void *D);
+/*
+ * call function to schedule corresponding arrival and landing event
+ * @param d is a pointer pointing to the event we want to process
+ *
+ */
+void Arrival(void *d);
+/*
+ * call function to schedule corresponding arrival event
+ * @param d is a pointer pointing to the event we want to process
+ *
+ */
+void Landing(void * d);
+/*
+ * call function to schedule landing event
+ * @param d is a pointer pointing to the event we want to process
+ *
+ */
+
+#endif /* SimEng_h */

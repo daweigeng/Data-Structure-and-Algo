@@ -1,0 +1,38 @@
+/*
+ * Application.c
+ *
+ *  Created on: 2015Äê9ÔÂ24ÈÕ
+ *      Author: Dawei
+ */
+#include <stdio.h>
+#include <stdlib.h>
+#include <time.h>
+#include "SimEng.h"
+#include "PriorityQ.h"
+#include "FifoQ.h"
+
+
+//define structure that we gonna use later to
+//determine which event it is and extract info from it.
+
+struct EventData{
+
+    enum EventKind {
+        arrivalEvent = 0,
+        landingEvent = 1
+    } k;
+
+    int id;
+
+    union{
+        struct{
+            double ts;
+        }arrivalEvent;
+
+        struct{
+            double ts;
+        }landingEvent;
+    }param;
+};
+
+

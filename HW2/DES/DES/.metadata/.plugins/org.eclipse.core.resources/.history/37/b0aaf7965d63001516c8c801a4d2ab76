@@ -1,0 +1,18 @@
+//
+//  PriorityQ.h
+//  DES
+//
+//  Created by TseWei Fu on 2015/9/24.
+//  Copyright © 2015年 Tse-Wei Fu. All rights reserved.
+//
+
+#ifndef PriorityQ_h
+#define PriorityQ_h
+
+#include <stdio.h>
+#include <stdlib.h>
+
+void PQinsert(void* E, double ts);
+void* PQpop();
+
+#endif /* PriorityQ_h */

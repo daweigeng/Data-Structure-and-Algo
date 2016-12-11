@@ -1,0 +1,15 @@
+//
+//  PriorityQ.h
+
+//
+
+#ifndef PriorityQ_h
+#define PriorityQ_h
+
+#include <stdio.h>
+#include <stdlib.h>
+
+void PQinsert(void* E, double ts);
+void* PQpop();
+
+#endif /* PriorityQ_h */

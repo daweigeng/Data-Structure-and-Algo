@@ -1,0 +1,34 @@
+//
+//  main.c
+
+//
+
+#include <stdio.h>
+#include <stdlib.h>
+#include <time.h>
+#include "SimEng.h"
+#include "PriorityQ.h"
+#include "FifoQ.h"
+#include "Application.h"
+
+int main(int argc, const char * argv[]) {
+
+    srand((unsigned) time(NULL));
+
+    //create first event
+    struct EventData *E = malloc(sizeof(struct EventData));
+    E -> k = 0;
+    E -> id = 1;
+    E -> param.arrivalEvent.ts = 1.0;
+    
+    // run Simulation
+    
+    runSim(E);
+    
+    // free memory
+    free(E);
+    return 0;
+}
+
+
+

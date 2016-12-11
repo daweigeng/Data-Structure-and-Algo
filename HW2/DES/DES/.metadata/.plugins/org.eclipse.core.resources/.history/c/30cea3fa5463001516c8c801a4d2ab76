@@ -1,0 +1,98 @@
+/*
+ * Application.c
+ *
+ *  Created on: 2015Äê9ÔÂ24ÈÕ
+ *      Author: Dawei
+ */
+#include <stdio.h>
+#include <stdlib.h>
+#include <time.h>
+#include "SimEng.h"
+#include "PriorityQ.h"
+#include "FifoQ.h"
+
+
+//define structure that we gonna use later to
+//determine which event it is and extract info from it.
+
+void callback(void *D)
+{
+    struct EventData *data = (struct EventData *) D;
+
+    if (data -> k == 0)
+    {
+        Arrival(data);
+    }
+
+    else if (data -> k == 1)
+    {
+        Landing(data);
+    }
+}
+
+int simulationlimit = 500;
+int intheAir = 0;
+int ontheGround = 0;
+int runWay = 1; // 0 for busy
+double R = 3.0; // the aircraft takes R seconds to land
+
+
+void Arrival(void *d)
+{
+
+    struct EventData *data = (struct EventData *) d;
+
+    intheAir = intheAir + 1;
+
+    if (data -> id < simulationlimit)
+    {
+    // schedule next arrival
+    struct EventData *E = malloc(sizeof(struct EventData));
+    E -> k = 0;
+    E -> id = data -> id + 1;
+    E -> param.arrivalEvent.ts = data -> param.arrivalEvent.ts + randexp();
+    PQinsert(E, E -> param.arrivalEvent.ts);
+    }
+    //printf("schedule arrival event for Aircraft: %d\n", E -> id);
+    //printf("With arrival time at: %f\n", E -> param.arrivalEvent.ts);
+    //printf("The previous flight arrives at: %f\n", data -> param.arrivalEvent.ts);
+
+
+    if (runWay == 0)
+    {
+        FIFOinsert(data, data -> param.arrivalEvent.ts);
+    }
+    else
+    {
+        data -> k = 1;
+        data -> param.landingEvent.ts = data -> param.arrivalEvent.ts + R;
+        PQinsert(data, data -> param.landingEvent.ts);
+        runWay = 0;
+    }
+
+
+    //free(E);
+}
+
+void Landing(void * d)
+{
+    //struct EventData *data = (struct EventData *) d;
+
+    intheAir = intheAir - 1;
+
+    if (intheAir > 0)
+    {
+        struct EventData *E = malloc(sizeof(struct EventData));
+
+        E = FIFOpop();
+        E -> k = 1;
+        E -> param.landingEvent.ts = E -> param.arrivalEvent.ts + R;
+        PQinsert(E, E->param.landingEvent.ts);
+        //free(E);
+    }
+    else
+    {
+        runWay = 1;
+    }
+}
+

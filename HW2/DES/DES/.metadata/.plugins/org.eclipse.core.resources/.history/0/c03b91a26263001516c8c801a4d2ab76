@@ -1,0 +1,18 @@
+//
+//  SimEng.h
+
+//
+
+#ifndef SimEng_h
+#define SimEng_h
+
+#include <stdio.h>
+#include <stdlib.h>
+
+void runSim(void *d);
+void callback(void *d);
+void schedule(void *d, double ts);
+double urand(void);
+double randexp();
+
+#endif /* SimEng_h */

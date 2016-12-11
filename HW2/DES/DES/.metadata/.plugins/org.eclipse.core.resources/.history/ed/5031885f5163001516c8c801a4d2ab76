@@ -1,0 +1,18 @@
+//
+//  FifoQ.h
+//  DES
+//
+//  Created by TseWei Fu on 2015/9/24.
+//  Copyright © 2015年 Tse-Wei Fu. All rights reserved.
+//
+
+#ifndef FifoQ_h
+#define FifoQ_h
+
+#include <stdio.h>
+#include <stdlib.h>
+
+void FIFOinsert(void* E, double ts);
+void* FIFOpop();
+
+#endif /* FifoQ_h */

@@ -1,0 +1,90 @@
+//
+//  SimEng.c
+//  DES
+//
+//  Created by TseWei Fu on 2015/9/24.
+//  Copyright © 2015年 Tse-Wei Fu. All rights reserved.
+//
+
+#include <stdio.h>
+#include <stdlib.h>
+#include <time.h>
+#include <math.h>
+#include "SimEng.h"
+#include "PriorityQ.h"
+#include "FifoQ.h"
+
+
+
+double urand(void){
+    return (double)rand() / (double)((unsigned)RAND_MAX + 1);
+}
+
+double randexp(){
+    double U = 10.0; // Set U
+    return -U * (log(1.0-urand()));
+}
+
+struct EventData{
+    
+    enum EventKind {
+        arrivalEvent = 0,
+        landingEvent = 1
+    } k;
+    
+    int id;
+    
+    union{
+        struct{
+            double ts;
+        }arrivalEvent;
+        
+        struct{
+            double ts;
+        }landingEvent;
+    }param;
+};
+
+
+void runSim(void *D)
+{
+    struct EventData *data = (struct EventData *) D;
+    
+    //data -> param.landingEvent.id = data -> param.arrivalEvent.id;
+    
+    
+    PQinsert(data, data -> param.arrivalEvent.ts);
+    
+    struct EventData *E = malloc(sizeof(struct EventData));
+    // double now = 0.0;
+    
+
+    while (E!=NULL)
+    {
+
+    
+        E = PQpop();
+        
+        if (E!=NULL)
+        {
+        
+            if (E -> k == 0)
+            {
+                printf("Aircraft id: %d\n", E -> id);
+                printf("Arrival time: %f\n", E -> param.arrivalEvent.ts);
+            }
+            else
+            {
+                printf("Aircraft id: %d\n", E -> id);
+                printf("Landed time: %f\n", E -> param.landingEvent.ts);
+            }
+
+            callback(E);
+        }
+        
+        else
+            break;
+    }
+
+}
+

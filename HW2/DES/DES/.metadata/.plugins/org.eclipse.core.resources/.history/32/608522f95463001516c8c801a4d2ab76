@@ -1,0 +1,37 @@
+/*
+ * Application.h
+ *
+ *  Created on: 2015Äê9ÔÂ25ÈÕ
+ *      Author: Dawei
+ */
+
+#ifndef APPLICATION_H_
+#define APPLICATION_H_
+
+struct EventData{
+
+    enum EventKind {
+        arrivalEvent = 0,
+        landingEvent = 1
+    } k;
+
+    int id;
+
+    union{
+        struct{
+            double ts;
+        }arrivalEvent;
+
+        struct{
+            double ts;
+        }landingEvent;
+    }param;
+};
+
+//declare function
+void Arrival(void *d);
+void Landing(void *d);
+void callback(void *D);
+
+
+#endif /* APPLICATION_H_ */

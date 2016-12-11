@@ -1,0 +1,18 @@
+//
+//  FifoQ.h
+
+
+//
+
+#ifndef FifoQ_h
+#define FifoQ_h
+
+#include <stdio.h>
+#include <stdlib.h>
+
+//method to insert method into FIFO queue
+void FIFOinsert(void* E, double ts);
+//method to pop out the first in plane
+void* FIFOpop();
+
+#endif /* FifoQ_h */
